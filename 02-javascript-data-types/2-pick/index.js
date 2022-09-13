@@ -5,7 +5,11 @@
  * @returns {object} - returns the new object
  */
 export const pick = (obj, ...fields) => {
-    let cloneObj = { ...obj};
-    fields.forEach(element => cloneObj[element] = element);
-    return cloneObj 
+    let cloneObj = {};
+    fields.forEach(element => {
+        if (element in obj){
+            cloneObj[element] = element;
+        }
+    });
+    return cloneObj;
 };
