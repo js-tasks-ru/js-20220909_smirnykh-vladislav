@@ -25,6 +25,5 @@ export function trimSymbols(string, size=false) {
             result += symbol;
         };
     });
-    string = result
     return result
 };
