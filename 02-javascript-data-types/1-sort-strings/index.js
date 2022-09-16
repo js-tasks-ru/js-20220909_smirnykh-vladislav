@@ -4,8 +4,10 @@
  * @param {string} [param="asc"] param - the sorting type "asc" or "desc"
  * @returns {string[]}
  */
-
 export function sortStrings(arr, param = 'asc') {
+    if (!['asc', 'desc'].includes(param)) {
+      throw new Error('Not found param');
+    }
     const arrCopy = [...arr];
     const caseFirst = param === 'desc' ? 'lower': 'upper';
     let collator = new Intl.Collator('ru', {caseFirst: caseFirst});
