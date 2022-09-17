@@ -5,5 +5,14 @@
  * @returns {string[]}
  */
 export function sortStrings(arr, param = 'asc') {
-
+    if (!['asc', 'desc'].includes(param)) {
+      throw new Error('Not found param');
+    }
+    const arrCopy = [...arr];
+    const caseFirst = param === 'desc' ? 'lower': 'upper';
+    let collator = new Intl.Collator('ru', {caseFirst: caseFirst});
+    let result = arrCopy.sort((a, b) => {
+        return param === 'desc' ? collator.compare(b, a): collator.compare(a, b);
+      });
+    return result
 }
