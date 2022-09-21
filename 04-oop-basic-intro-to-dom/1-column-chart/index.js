@@ -1,7 +1,7 @@
 export default class ColumnChart {
   chartHeight = 50;
 
-  constructor(values) {
+  constructor(values={}) {
     this.data = values.data || [];
     this.label = values.label || '';
     this.value = values.hasOwnProperty('formatHeading') ? values.formatHeading(values.value) : values.value || 0;
