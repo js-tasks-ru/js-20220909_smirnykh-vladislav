@@ -18,7 +18,7 @@ export function trimSymbols(string, size=false) {
         if (result.at(-1) === symbol && size !== count){
             count++;
             result += symbol;
-        } else if (result.at(-1) !== symbol){
+        } else if (result[result.length-1] !== symbol){
             count = 1;
             result += symbol;
         };
