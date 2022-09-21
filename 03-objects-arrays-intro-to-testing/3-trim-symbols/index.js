@@ -15,7 +15,7 @@ export function trimSymbols(string, size=false) {
     let count = 0;
 
     string.split('').forEach(symbol => {
-        if (result.at(-1) === symbol && size !== count){
+        if (result[result.length-1] === symbol && size !== count){
             count++;
             result += symbol;
         } else if (result[result.length-1] !== symbol){
