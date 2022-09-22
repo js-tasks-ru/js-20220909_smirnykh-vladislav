@@ -19,12 +19,10 @@ export default class ColumnChart {
   }
 
   getTemplate() {
-    const elemClassColumn = 'column-chart ' + (this.data.length ? '' : 'column-chart_loading');
     const elemLink = this.link ? `<a href="${this.link}" class="column-chart__link">View all</a>`: '';
     const elemData = this.getDataLine();
     
     return `
-    <div class="${elemClassColumn}" style="--chart-height: ${this.chartHeight}">
       <div class="column-chart__title">
         Total ${this.label}
         ${elemLink}
@@ -37,16 +35,15 @@ export default class ColumnChart {
             ${elemData}
         </div>
       </div>
-    </div>
-  </div>
     `;
   }
 
   render() {
     // DOM
     const wrapper = document.createElement("div");
-
+    wrapper.className = 'column-chart ' + (this.data.length ? '' : 'column-chart_loading');
     wrapper.innerHTML = this.getTemplate();
+    wrapper.style = `--chart-height: ${this.chartHeight}`
 
     this.element = wrapper;
   }
