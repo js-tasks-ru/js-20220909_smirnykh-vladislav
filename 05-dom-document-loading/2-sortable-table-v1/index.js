@@ -32,33 +32,30 @@ export default class SortableTable {
         if (item.hasOwnProperty("template")) {
           return item.template(dataEl[item.id]);
         } else {
-          return `<div class="sortable-table__cell">
-                ${dataEl[item.id]}
-            </div>`;
+          return `<div class="sortable-table__cell">${dataEl[item.id]}</div>`;
         }
       })
-      .join("");
+      .join(" ");
   }
 
   getBody() {
-    return `
-    <div data-element="body" class="sortable-table__body">
-        ${this.data
-          .map((item) => {
-            return `
+    return this.data
+      .map((item) => {
+        return `
             <a href="${item.id}" class="sortable-table__row">
               ${this.getRowElements(item)}
             </a>
             `;
-          })
-          .join("")}
-    </div>`;
+      })
+      .join(" ");
   }
 
   get table() {
     return `<div class="sortable-table">
               ${this.getHeader()}
-              ${this.getBody()}
+              <div data-element="body" class="sortable-table__body">
+                ${this.getBody()}
+              </div>
             </div>`;
   }
 
@@ -83,11 +80,15 @@ export default class SortableTable {
     } else {
       throw new Error("Error sorting");
     }
-    const allColumns = this.element.querySelectorAll('.sortable-table__cell[data-id]');
-    const currentColumn = this.element.querySelector(`.sortable-table__cell[data-id="${field}"]`);
+    const allColumns = this.element.querySelectorAll(
+      ".sortable-table__cell[data-id]"
+    );
+    const currentColumn = this.element.querySelector(
+      `.sortable-table__cell[data-id="${field}"]`
+    );
 
-    allColumns.forEach(column => {
-      column.dataset.order = '';
+    allColumns.forEach((column) => {
+      column.dataset.order = "";
     });
 
     currentColumn.dataset.order = order;
